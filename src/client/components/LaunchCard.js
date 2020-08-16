@@ -24,7 +24,7 @@ const LaunchCard = ({ launch }) => {
   return (
     <div className="launchCard">
       <img
-        src={"https://homepages.cae.wisc.edu/~ece533/images/airplane.png"}
+        src={launch.links.mission_patch_small}
         alt="Launch Image"
         className="launchImg"
       />
