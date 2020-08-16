@@ -660,6 +660,7 @@ var LaunchCard = function LaunchCard(_ref) {
     { className: "launchCard" },
     _react2.default.createElement("img", {
       src: "https://homepages.cae.wisc.edu/~ece533/images/airplane.png",
+      alt: "Launch Image",
       className: "launchImg"
     }),
     _react2.default.createElement(
@@ -780,7 +781,7 @@ exports.default = function (req, store, context) {
 
   var helmet = _reactHelmet.Helmet.renderStatic();
 
-  return "\n    <html>\n      <head>\n      <meta content=\"width=device-width, initial-scale=1\" name=\"viewport\" />\n      " + helmet.title.toString() + "\n      " + helmet.meta.toString() + "\n        <script>\n            window.__PRELOADED_STATE__ = " + JSON.stringify(store.getState()).replace(/</g, "\\u003c") + "\n        </script>\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n      </head>\n      <body>\n        <div id=\"root\">" + content + "</div>\n        <script src=\"bundle.js\"></script>\n      </body>\n    </html>\n    ";
+  return "\n    <!DOCTYPE html>\n    <html lang=\"en\">\n      <head>\n      <meta content=\"width=device-width, initial-scale=1\" name=\"viewport\" />\n      " + helmet.title.toString() + "\n      " + helmet.meta.toString() + "\n        <script>\n            window.__PRELOADED_STATE__ = " + JSON.stringify(store.getState()).replace(/</g, "\\u003c") + "\n        </script>\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n      </head>\n      <body>\n        <div id=\"root\">" + content + "</div>\n        <script src=\"bundle.js\"></script>\n      </body>\n    </html>\n    ";
 };
 
 /***/ }),

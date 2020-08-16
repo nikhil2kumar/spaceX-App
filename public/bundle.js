@@ -53718,6 +53718,7 @@ var LaunchCard = function LaunchCard(_ref) {
     { className: "launchCard" },
     _react2.default.createElement("img", {
       src: "https://homepages.cae.wisc.edu/~ece533/images/airplane.png",
+      alt: "Launch Image",
       className: "launchImg"
     }),
     _react2.default.createElement(

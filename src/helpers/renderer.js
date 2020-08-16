@@ -18,7 +18,8 @@ export default (req, store, context) => {
   const helmet = Helmet.renderStatic();
 
   return `
-    <html>
+    <!DOCTYPE html>
+    <html lang="en">
       <head>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       ${helmet.title.toString()}

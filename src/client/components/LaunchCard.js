@@ -24,6 +24,7 @@ const LaunchCard = ({ launch }) => {
     <div className="launchCard">
       <img
         src={"https://homepages.cae.wisc.edu/~ece533/images/airplane.png"}
+        alt="Launch Image"
         className="launchImg"
       />
       <h6 className="launchCard--title">
