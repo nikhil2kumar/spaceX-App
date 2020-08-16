@@ -9,6 +9,12 @@ const app = express();
 
 app.use(express.static("public"));
 
+app.get("*.js", function (req, res, next) {
+  req.url = req.url + ".gz";
+  res.set("Content-Encoding", "gzip");
+  next();
+});
+
 app.get("*", (req, res) => {
   const store = createStore();
   const promises = matchRoutes(Routes, req.path)
