@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import LazyLoad from "react-lazy-load";
 import PropTypes from "prop-types";
 
 const LaunchCard = ({ launch }) => {
@@ -23,11 +24,13 @@ const LaunchCard = ({ launch }) => {
 
   return (
     <div className="launchCard">
-      <img
-        src={launch.links.mission_patch_small}
-        alt="Launch Image"
-        className="launchImg"
-      />
+      <LazyLoad width={"100%"} height={150} debounce={false}>
+        <img
+          src={launch.links.mission_patch_small}
+          alt="Launch Image"
+          className="launchImg"
+        />
+      </LazyLoad>
       <h6 className="launchCard--title">
         {launch.mission_name} #{launch.flight_number}
       </h6>
