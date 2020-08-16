@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -125,13 +125,13 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactHelmet = __webpack_require__(5);
+var _reactHelmet = __webpack_require__(4);
 
-var _reactRedux = __webpack_require__(4);
+var _reactRedux = __webpack_require__(5);
 
 var _index = __webpack_require__(6);
 
-var _Filtercard = __webpack_require__(13);
+var _Filtercard = __webpack_require__(12);
 
 var _Filtercard2 = _interopRequireDefault(_Filtercard);
 
@@ -314,13 +314,13 @@ exports.default = {
 /* 4 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-redux");
+module.exports = require("react-helmet");
 
 /***/ }),
 /* 5 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-helmet");
+module.exports = require("react-redux");
 
 /***/ }),
 /* 6 */
@@ -334,7 +334,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.fetchLaunches = exports.FETCH_LAUNCHES = undefined;
 
-var _axios = __webpack_require__(12);
+var _axios = __webpack_require__(11);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -388,64 +388,20 @@ var fetchLaunches = exports.fetchLaunches = function fetchLaunches(queryParams) 
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _propTypes = __webpack_require__(14);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Button = function Button(_ref) {
-  var text = _ref.text,
-      active = _ref.active,
-      onClick = _ref.onClick;
-
-  var className = ["btn"];
-  active && className.push("btn--active");
-
-  return _react2.default.createElement(
-    "button",
-    { className: className.join(" "), onClick: onClick },
-    text
-  );
-};
-
-Button.propTypes = {
-  text: _propTypes2.default.string.isRequired,
-  active: _propTypes2.default.bool,
-  onClick: _propTypes2.default.func.isRequired
-};
-
-exports.default = Button;
-
-/***/ }),
-/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = require("redux");
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(10);
+__webpack_require__(9);
 
-var _express = __webpack_require__(11);
+var _express = __webpack_require__(10);
 
 var _express2 = _interopRequireDefault(_express);
 
@@ -455,11 +411,11 @@ var _Routes = __webpack_require__(2);
 
 var _Routes2 = _interopRequireDefault(_Routes);
 
-var _createStore = __webpack_require__(20);
+var _createStore = __webpack_require__(17);
 
 var _createStore2 = _interopRequireDefault(_createStore);
 
-var _renderer = __webpack_require__(17);
+var _renderer = __webpack_require__(21);
 
 var _renderer2 = _interopRequireDefault(_renderer);
 
@@ -499,25 +455,25 @@ app.listen(process.env.PORT || 3000, function () {
 });
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = require("babel-polyfill");
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = require("express");
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports = require("axios");
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -533,13 +489,15 @@ var _react2 = _interopRequireDefault(_react);
 
 var _HomePage = __webpack_require__(3);
 
-var _Button = __webpack_require__(7);
+var _Button = __webpack_require__(13);
 
 var _Button2 = _interopRequireDefault(_Button);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var LAUNCH_YEAR = ["2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"];
+
+var SUCCESS_FLAGS = ["true", "false"];
 
 var FilterCard = function FilterCard(_ref) {
   var updateFilter = _ref.updateFilter,
@@ -582,16 +540,60 @@ var FilterCard = function FilterCard(_ref) {
     renderFilterSection("Launch Year", activeFilter[_HomePage.FILTER_TYPE.LAUNCH_YEAR], LAUNCH_YEAR, function (val) {
       return updateFilter(val, _HomePage.FILTER_TYPE.LAUNCH_YEAR);
     }),
-    renderFilterSection("Successful Launch", activeFilter[_HomePage.FILTER_TYPE.SUCCESS_LAUNCH], ["true", "false"], function (val) {
+    renderFilterSection("Successful Launch", activeFilter[_HomePage.FILTER_TYPE.SUCCESS_LAUNCH], SUCCESS_FLAGS, function (val) {
       return updateFilter(val, _HomePage.FILTER_TYPE.SUCCESS_LAUNCH);
     }),
-    renderFilterSection("Successful Landing", activeFilter[_HomePage.FILTER_TYPE.SUCCESS_LAND], ["true", "false"], function (val) {
+    renderFilterSection("Successful Landing", activeFilter[_HomePage.FILTER_TYPE.SUCCESS_LAND], SUCCESS_FLAGS, function (val) {
       return updateFilter(val, _HomePage.FILTER_TYPE.SUCCESS_LAND);
     })
   );
 };
 
-exports.default = FilterCard;
+exports.default = (0, _react.memo)(FilterCard);
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _propTypes = __webpack_require__(14);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Button = function Button(_ref) {
+  var text = _ref.text,
+      active = _ref.active,
+      onClick = _ref.onClick;
+
+  var className = ["btn"];
+  active && className.push("btn--active");
+
+  return _react2.default.createElement(
+    "button",
+    { className: className.join(" "), onClick: onClick },
+    text
+  );
+};
+
+Button.propTypes = {
+  text: _propTypes2.default.string.isRequired,
+  active: _propTypes2.default.bool,
+  onClick: _propTypes2.default.func.isRequired
+};
+
+exports.default = Button;
 
 /***/ }),
 /* 14 */
@@ -700,7 +702,7 @@ var LaunchCard = function LaunchCard(_ref) {
   );
 };
 
-exports.default = LaunchCard;
+exports.default = (0, _react.memo)(LaunchCard);
 
 /***/ }),
 /* 16 */
@@ -744,19 +746,100 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _redux = __webpack_require__(7);
+
+var _reduxThunk = __webpack_require__(18);
+
+var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+
+var _reducers = __webpack_require__(19);
+
+var _reducers2 = _interopRequireDefault(_reducers);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+  return (0, _redux.createStore)(_reducers2.default, {}, (0, _redux.applyMiddleware)(_reduxThunk2.default));
+};
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports) {
+
+module.exports = require("redux-thunk");
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _redux = __webpack_require__(7);
+
+var _launchReducer = __webpack_require__(20);
+
+var _launchReducer2 = _interopRequireDefault(_launchReducer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = (0, _redux.combineReducers)({
+  launches: _launchReducer2.default
+});
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _index = __webpack_require__(6);
+
+exports.default = function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _index.FETCH_LAUNCHES:
+      return action.payload.data;
+    default:
+      return state;
+  }
+};
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _server = __webpack_require__(18);
+var _server = __webpack_require__(22);
 
-var _reactHelmet = __webpack_require__(5);
+var _reactHelmet = __webpack_require__(4);
 
-var _reactRedux = __webpack_require__(4);
+var _reactRedux = __webpack_require__(5);
 
 var _reactRouterConfig = __webpack_require__(1);
 
-var _reactRouterDom = __webpack_require__(19);
+var _reactRouterDom = __webpack_require__(23);
 
 var _Routes = __webpack_require__(2);
 
@@ -785,97 +868,16 @@ exports.default = function (req, store, context) {
 };
 
 /***/ }),
-/* 18 */
+/* 22 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom/server");
 
 /***/ }),
-/* 19 */
+/* 23 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-router-dom");
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _redux = __webpack_require__(8);
-
-var _reduxThunk = __webpack_require__(21);
-
-var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
-
-var _reducers = __webpack_require__(22);
-
-var _reducers2 = _interopRequireDefault(_reducers);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function () {
-  return (0, _redux.createStore)(_reducers2.default, {}, (0, _redux.applyMiddleware)(_reduxThunk2.default));
-};
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports) {
-
-module.exports = require("redux-thunk");
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _redux = __webpack_require__(8);
-
-var _launchReducer = __webpack_require__(23);
-
-var _launchReducer2 = _interopRequireDefault(_launchReducer);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = (0, _redux.combineReducers)({
-  launches: _launchReducer2.default
-});
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _index = __webpack_require__(6);
-
-exports.default = function () {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  var action = arguments[1];
-
-  switch (action.type) {
-    case _index.FETCH_LAUNCHES:
-      return action.payload.data;
-    default:
-      return state;
-  }
-};
 
 /***/ })
 /******/ ]);
