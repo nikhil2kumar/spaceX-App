@@ -487,6 +487,10 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(14);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _HomePage = __webpack_require__(3);
 
 var _Button = __webpack_require__(13);
@@ -549,6 +553,11 @@ var FilterCard = function FilterCard(_ref) {
   );
 };
 
+FilterCard.propTypes = {
+  updateFilter: _propTypes2.default.func.isRequired,
+  activeFilter: _propTypes2.default.object.isRequired
+};
+
 exports.default = (0, _react.memo)(FilterCard);
 
 /***/ }),
@@ -593,7 +602,7 @@ Button.propTypes = {
   onClick: _propTypes2.default.func.isRequired
 };
 
-exports.default = Button;
+exports.default = (0, _react.memo)(Button);
 
 /***/ }),
 /* 14 */
@@ -615,6 +624,10 @@ Object.defineProperty(exports, "__esModule", {
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(14);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -700,6 +713,10 @@ var LaunchCard = function LaunchCard(_ref) {
       renderRow("Successful Landing", getLandSuccess())
     )
   );
+};
+
+LaunchCard.propTypes = {
+  launch: _propTypes2.default.object.isRequired
 };
 
 exports.default = (0, _react.memo)(LaunchCard);

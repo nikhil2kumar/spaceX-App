@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import PropTypes from "prop-types";
 import { FILTER_TYPE } from "../pages/HomePage";
 import Button from "./Button";
 
@@ -64,6 +65,11 @@ const FilterCard = ({ updateFilter, activeFilter }) => {
       )}
     </div>
   );
+};
+
+FilterCard.propTypes = {
+  updateFilter: PropTypes.func.isRequired,
+  activeFilter: PropTypes.object.isRequired,
 };
 
 export default memo(FilterCard);

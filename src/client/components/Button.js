@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { memo } from "react";
 
 const Button = ({ text, active, onClick }) => {
   const className = ["btn"];
@@ -18,4 +18,4 @@ Button.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-export default Button;
+export default memo(Button);

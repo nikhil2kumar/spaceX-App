@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import PropTypes from "prop-types";
 
 const LaunchCard = ({ launch }) => {
   const renderRow = (key, value) => (
@@ -56,6 +57,10 @@ const LaunchCard = ({ launch }) => {
       </div>
     </div>
   );
+};
+
+LaunchCard.propTypes = {
+  launch: PropTypes.object.isRequired,
 };
 
 export default memo(LaunchCard);
