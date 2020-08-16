@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 const LaunchCard = ({ launch }) => {
   const renderRow = (key, value) => (
@@ -58,4 +58,4 @@ const LaunchCard = ({ launch }) => {
   );
 };
 
-export default LaunchCard;
+export default memo(LaunchCard);

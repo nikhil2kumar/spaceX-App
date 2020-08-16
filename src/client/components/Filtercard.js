@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { FILTER_TYPE } from "../pages/HomePage";
 import Button from "./Button";
 
@@ -19,6 +19,8 @@ const LAUNCH_YEAR = [
   "2019",
   "2020",
 ];
+
+const SUCCESS_FLAGS = ["true", "false"];
 
 const FilterCard = ({ updateFilter, activeFilter }) => {
   const renderFilterSection = (title, filterType, filterArray, onClick) => (
@@ -51,17 +53,17 @@ const FilterCard = ({ updateFilter, activeFilter }) => {
       {renderFilterSection(
         "Successful Launch",
         activeFilter[FILTER_TYPE.SUCCESS_LAUNCH],
-        ["true", "false"],
+        SUCCESS_FLAGS,
         (val) => updateFilter(val, FILTER_TYPE.SUCCESS_LAUNCH)
       )}
       {renderFilterSection(
         "Successful Landing",
         activeFilter[FILTER_TYPE.SUCCESS_LAND],
-        ["true", "false"],
+        SUCCESS_FLAGS,
         (val) => updateFilter(val, FILTER_TYPE.SUCCESS_LAND)
       )}
     </div>
   );
 };
 
-export default FilterCard;
+export default memo(FilterCard);
