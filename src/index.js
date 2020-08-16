@@ -46,9 +46,9 @@ app.get("*", (req, res) => {
       }
     });
 
-  Promise.all(promises).then(() => {
+  Promise.all(promises).then(async () => {
     const context = {};
-    const content = renderer(req, store, context);
+    const content = await renderer(req, store, context);
 
     if (context.notFound) {
       res.status(404);

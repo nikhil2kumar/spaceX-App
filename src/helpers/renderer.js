@@ -1,20 +1,35 @@
 import React from "react";
-import { renderToString } from "react-dom/server";
+import { renderToString, renderToNodeStream } from "react-dom/server";
 import { Helmet } from "react-helmet";
 import { Provider } from "react-redux";
 import { renderRoutes } from "react-router-config";
 import { StaticRouter } from "react-router-dom";
 import Routes from "../client/Routes";
 
-export default (req, store, context) => {
-  const content = renderToString(
+export default async (req, store, context) => {
+  const render = (reactComponent) => {
+    return new Promise((resolve, reject) => {
+      const body = [];
+      const bodyStream = renderToNodeStream(reactComponent);
+      bodyStream.on("data", (chunk) => {
+        body.push(chunk.toString());
+      });
+      bodyStream.on("error", (err) => {
+        reject(err);
+      });
+      bodyStream.on("end", () => {
+        resolve(body.join(""));
+      });
+    });
+  };
+
+  const content = await render(
     <Provider store={store}>
       <StaticRouter location={req.path} context={context}>
         <div>{renderRoutes(Routes)}</div>
       </StaticRouter>
     </Provider>
   );
-
   const helmet = Helmet.renderStatic();
 
   return `
