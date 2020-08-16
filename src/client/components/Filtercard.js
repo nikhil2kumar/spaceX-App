@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import Button from "./Button";
+import React from "react";
 import { FILTER_TYPE } from "../pages/HomePage";
+import Button from "./Button";
 
 const LAUNCH_YEAR = [
   "2006",

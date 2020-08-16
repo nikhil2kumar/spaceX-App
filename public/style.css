@@ -5,7 +5,7 @@ body {
 }
 
 *::-webkit-scrollbar {
-  width: 5px;
+  width: 10px;
 }
 
 /* Track */
@@ -58,11 +58,11 @@ h1 {
   padding: 10px;
   overflow: hidden;
   color: #383737;
+  padding-right: 0;
 }
 
 .inner--container {
   overflow: auto;
-  max-width: 1440px;
   display: flex;
   flex: 1;
   flex-wrap: wrap;
@@ -126,8 +126,8 @@ h1 {
   margin: 0 5px 10px;
   border-radius: 5px;
   box-shadow: 0 2px 3px #8d7e7e;
-  height: 310px;
-  max-height: 310px;
+  height: 320px;
+  max-height: 320px;
   overflow: hidden;
 }
 

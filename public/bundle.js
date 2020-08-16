@@ -8629,9 +8629,9 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(169);
-
 var _reactHelmet = __webpack_require__(461);
+
+var _reactRedux = __webpack_require__(169);
 
 var _index = __webpack_require__(180);
 
@@ -9158,13 +9158,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _react = __webpack_require__(4);
-
-var _react2 = _interopRequireDefault(_react);
-
 var _propTypes = __webpack_require__(12);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9198,15 +9198,19 @@ exports.default = Button;
 "use strict";
 
 
+__webpack_require__(190);
+
 var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
-__webpack_require__(190);
-
 var _reactDom = __webpack_require__(156);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRedux = __webpack_require__(169);
+
+var _reactRouterConfig = __webpack_require__(454);
 
 var _reactRouterDom = __webpack_require__(399);
 
@@ -9216,17 +9220,13 @@ var _reduxThunk = __webpack_require__(441);
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-var _reactRedux = __webpack_require__(169);
+var _reducers = __webpack_require__(486);
 
-var _reactRouterConfig = __webpack_require__(454);
+var _reducers2 = _interopRequireDefault(_reducers);
 
 var _Routes = __webpack_require__(460);
 
 var _Routes2 = _interopRequireDefault(_Routes);
-
-var _reducers = __webpack_require__(486);
-
-var _reducers2 = _interopRequireDefault(_reducers);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -53595,11 +53595,11 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _HomePage = __webpack_require__(179);
+
 var _Button = __webpack_require__(186);
 
 var _Button2 = _interopRequireDefault(_Button);
-
-var _HomePage = __webpack_require__(179);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -53671,10 +53671,6 @@ Object.defineProperty(exports, "__esModule", {
 var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
-
-var _Button = __webpack_require__(186);
-
-var _Button2 = _interopRequireDefault(_Button);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

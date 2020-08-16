@@ -125,9 +125,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(4);
-
 var _reactHelmet = __webpack_require__(5);
+
+var _reactRedux = __webpack_require__(4);
 
 var _index = __webpack_require__(6);
 
@@ -397,13 +397,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
 var _propTypes = __webpack_require__(14);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -455,13 +455,13 @@ var _Routes = __webpack_require__(2);
 
 var _Routes2 = _interopRequireDefault(_Routes);
 
-var _renderer = __webpack_require__(17);
-
-var _renderer2 = _interopRequireDefault(_renderer);
-
 var _createStore = __webpack_require__(20);
 
 var _createStore2 = _interopRequireDefault(_createStore);
+
+var _renderer = __webpack_require__(17);
+
+var _renderer2 = _interopRequireDefault(_renderer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -531,11 +531,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _HomePage = __webpack_require__(3);
+
 var _Button = __webpack_require__(7);
 
 var _Button2 = _interopRequireDefault(_Button);
-
-var _HomePage = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -613,10 +613,6 @@ Object.defineProperty(exports, "__esModule", {
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
-
-var _Button = __webpack_require__(7);
-
-var _Button2 = _interopRequireDefault(_Button);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -753,13 +749,13 @@ var _react2 = _interopRequireDefault(_react);
 
 var _server = __webpack_require__(18);
 
-var _reactRouterDom = __webpack_require__(19);
+var _reactHelmet = __webpack_require__(5);
 
 var _reactRedux = __webpack_require__(4);
 
 var _reactRouterConfig = __webpack_require__(1);
 
-var _reactHelmet = __webpack_require__(5);
+var _reactRouterDom = __webpack_require__(19);
 
 var _Routes = __webpack_require__(2);
 
