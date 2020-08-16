@@ -1,0 +1,231 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+h1 {
+  margin: 0;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.btn {
+  background: #a9e3a9;
+  border: none;
+  border-radius: 5px;
+  padding: 4px 10px;
+  flex-basis: 40%;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+
+.btn--active {
+  background: #29b629;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.outer--container {
+  display: flex;
+  flex-direction: column;
+  background: #e5e0e0;
+  height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  overflow: hidden;
+  color: #383737;
+}
+
+.inner--container {
+  overflow: auto;
+  max-width: 1440px;
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.filterCol {
+  flex-basis: 100%;
+}
+
+.resultCol {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+}
+
+.footer > h5 {
+  margin: 0px;
+}
+
+.filterCard {
+  background: #ffffff;
+  padding: 10px 15px 20px;
+  margin: 5px;
+  margin-top: 0;
+  border-radius: 5px;
+}
+
+.filterCard--header {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.filterCard--title {
+  border-bottom: 2px solid #d7c9c9;
+  margin-bottom: 5px;
+  padding: 2px 0px;
+  display: inline-block;
+  font-weight: bold;
+  color: #5d5757;
+  font-size: 14px;
+}
+
+.filterCard--filterRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.launchCard {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  padding: 15px;
+  background: #ffffff;
+  margin: 0 5px 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 3px #8d7e7e;
+}
+
+.launchCard h5 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.launchCard ul {
+  margin: 0;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.launchCard--row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.launchCard h6 {
+  margin-bottom: 8px;
+  margin-top: 0;
+}
+
+.launchCard--title {
+  color: #684dd5;
+  margin-top: 5px !important;
+}
+
+.launchCard--row_value {
+  font-size: 12px;
+  text-align: right;
+}
+
+.launchImg {
+  height: 150px;
+  align-self: center;
+}
+
+.noDataLabel {
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+.launchCard--missionId {
+  margin-bottom: 0px;
+}
+
+.loader--outer {
+  position: absolute;
+  display: flex;
+  background: transparent;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .filterCol {
+    flex-basis: 35%;
+  }
+
+  .resultCol {
+    flex: 1;
+    height: 100%;
+  }
+
+  .launchCard {
+    flex-basis: 40%;
+  }
+  .noLaunchData {
+    margin: auto;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .filterCol {
+    flex-basis: 25%;
+  }
+
+  .launchCard {
+    flex-basis: 19%;
+  }
+
+  .launchImg {
+    width: 135px;
+  }
+}
