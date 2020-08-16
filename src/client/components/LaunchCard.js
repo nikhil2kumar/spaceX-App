@@ -17,7 +17,6 @@ const LaunchCard = ({ launch }) => {
     );
 
     if (!core) return "No Data Available";
-
     if (core.land_success) return "Yes";
     else return "No";
   };
