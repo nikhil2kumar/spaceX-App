@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLaunches } from "../actions/index";
@@ -64,14 +64,14 @@ const HomePage = (props) => {
     dispatch(fetchLaunches(queryParams));
   };
 
-  const renderLaunches = () => {
+  const renderLaunches = useMemo(() => {
     if (!launches || launches.length <= 0)
       return <h1 className="noLaunchData">No Data Available.</h1>;
 
     return launches.map((launch, index) => (
       <LaunchCard key={index} launch={launch} />
     ));
-  };
+  }, [launches]);
 
   const head = () => (
     <Helmet>
@@ -104,7 +104,7 @@ const HomePage = (props) => {
             />
           </div>
 
-          <div className="resultCol">{renderLaunches()}</div>
+          <div className="resultCol">{renderLaunches}</div>
         </div>
         <div className="footer">
           <h5>Developed by: Nikhil Kumar</h5>
