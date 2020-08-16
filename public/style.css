@@ -5,12 +5,23 @@ body {
 }
 
 *::-webkit-scrollbar {
-  display: none;
+  width: 5px;
 }
 
-* {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+/* Track */
+::-webkit-scrollbar-track {
+  background: #e5e0e0;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(199, 198, 198);
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(161, 161, 161);
 }
 
 h1 {
@@ -115,6 +126,31 @@ h1 {
   margin: 0 5px 10px;
   border-radius: 5px;
   box-shadow: 0 2px 3px #8d7e7e;
+  height: 310px;
+  max-height: 310px;
+  overflow: hidden;
+}
+
+.launchCard--section {
+  flex: 1;
+  overflow: auto;
+}
+
+.launchCard--section::-webkit-scrollbar {
+  width: 3px;
+}
+
+.launchCard--section::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+.launchCard--section::-webkit-scrollbar-thumb {
+  background: rgb(223, 221, 221);
+  border-radius: 5px;
+}
+
+.launchCard--section::-webkit-scrollbar-thumb:hover {
+  background: rgb(161, 161, 161);
 }
 
 .launchCard h5 {
@@ -141,6 +177,7 @@ h1 {
 
 .launchCard--title {
   color: #684dd5;
+  height: 30px;
   margin-top: 5px !important;
 }
 
@@ -160,7 +197,7 @@ h1 {
 }
 
 .launchCard--missionId {
-  margin-bottom: 0px;
+  margin-bottom: 0px !important;
 }
 
 .loader--outer {

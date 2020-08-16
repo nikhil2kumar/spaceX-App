@@ -30,29 +30,30 @@ const LaunchCard = ({ launch }) => {
       <h6 className="launchCard--title">
         {launch.mission_name} #{launch.flight_number}
       </h6>
-
-      <div>
-        <h6 className="launchCard--missionId">Mission Ids:</h6>
-        {launch.mission_id && launch.mission_id.length > 0 ? (
-          <ul>
-            {launch.mission_id.map((ids) => (
-              <li>{ids}</li>
-            ))}
-          </ul>
-        ) : (
-          <NoData />
+      <div className="launchCard--section">
+        <div>
+          <h6 className="launchCard--missionId">Mission Ids:</h6>
+          {launch.mission_id && launch.mission_id.length > 0 ? (
+            <ul>
+              {launch.mission_id.map((ids) => (
+                <li>{ids}</li>
+              ))}
+            </ul>
+          ) : (
+            <NoData />
+          )}
+        </div>
+        {renderRow("Launch Year", launch.launch_year)}
+        {renderRow(
+          "Successful Launch",
+          launch.launch_success === true
+            ? "Yes"
+            : launch.launch_success === false
+            ? "No"
+            : "No Data Available"
         )}
+        {renderRow("Successful Landing", getLandSuccess())}
       </div>
-      {renderRow("Launch Year", launch.launch_year)}
-      {renderRow(
-        "Successful Launch",
-        launch.launch_success === true
-          ? "Yes"
-          : launch.launch_success === false
-          ? "No"
-          : "No Data Available"
-      )}
-      {renderRow("Successful Landing", getLandSuccess())}
     </div>
   );
 };

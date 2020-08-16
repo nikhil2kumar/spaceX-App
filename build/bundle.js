@@ -88,11 +88,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _HomePage = __webpack_require__(12);
+var _HomePage = __webpack_require__(3);
 
 var _HomePage2 = _interopRequireDefault(_HomePage);
 
-var _NotFoundPage = __webpack_require__(17);
+var _NotFoundPage = __webpack_require__(16);
 
 var _NotFoundPage2 = _interopRequireDefault(_NotFoundPage);
 
@@ -105,212 +105,6 @@ exports.default = [_extends({}, _HomePage2.default, {
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-redux");
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-helmet");
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.fetchLaunches = exports.FETCH_LAUNCHES = undefined;
-
-var _axios = __webpack_require__(13);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
-var FETCH_LAUNCHES = exports.FETCH_LAUNCHES = "fetch_launches";
-
-var fetchLaunches = exports.fetchLaunches = function fetchLaunches(queryParams) {
-  return function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
-      var url, queryParamsMod, res;
-      return regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              url = "https://api.spaceXdata.com/v3/launches?limit=100";
-              queryParamsMod = queryParams.replace("/", "").replace("?", "");
-
-
-              if (queryParamsMod && queryParamsMod.trim().length >= 0) {
-                url += "&" + queryParamsMod;
-              }
-
-              _context.next = 5;
-              return _axios2.default.get(url);
-
-            case 5:
-              res = _context.sent;
-
-
-              dispatch({
-                type: FETCH_LAUNCHES,
-                payload: res
-              });
-
-            case 7:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, undefined);
-    }));
-
-    return function (_x) {
-      return _ref.apply(this, arguments);
-    };
-  }();
-};
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-router-dom");
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(15);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Button = function Button(_ref) {
-  var text = _ref.text,
-      active = _ref.active,
-      onClick = _ref.onClick;
-
-  var className = ["btn"];
-  active && className.push("btn--active");
-
-  return _react2.default.createElement(
-    "button",
-    { className: className.join(" "), onClick: onClick },
-    text
-  );
-};
-
-Button.propTypes = {
-  text: _propTypes2.default.string.isRequired,
-  active: _propTypes2.default.bool,
-  onClick: _propTypes2.default.func.isRequired
-};
-
-exports.default = Button;
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-module.exports = require("redux");
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-__webpack_require__(10);
-
-var _express = __webpack_require__(11);
-
-var _express2 = _interopRequireDefault(_express);
-
-var _reactRouterConfig = __webpack_require__(1);
-
-var _Routes = __webpack_require__(2);
-
-var _Routes2 = _interopRequireDefault(_Routes);
-
-var _renderer = __webpack_require__(18);
-
-var _renderer2 = _interopRequireDefault(_renderer);
-
-var _createStore = __webpack_require__(20);
-
-var _createStore2 = _interopRequireDefault(_createStore);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var app = (0, _express2.default)();
-
-app.use(_express2.default.static("public"));
-
-app.get("*", function (req, res) {
-  var store = (0, _createStore2.default)();
-  var promises = (0, _reactRouterConfig.matchRoutes)(_Routes2.default, req.path).map(function (_ref) {
-    var route = _ref.route;
-
-    return route.loadData ? route.loadData(store, req.originalUrl) : null;
-  }).map(function (promise) {
-    if (promise) {
-      return new Promise(function (resolve, reject) {
-        promise.then(resolve).catch(resolve);
-      });
-    }
-  });
-
-  Promise.all(promises).then(function () {
-    var context = {};
-    var content = (0, _renderer2.default)(req, store, context);
-
-    if (context.notFound) {
-      res.status(404);
-    }
-    res.send(content);
-  });
-});
-
-app.listen(3000, function () {
-  console.log("listening to port 3000");
-});
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports) {
-
-module.exports = require("babel-polyfill");
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
-module.exports = require("express");
-
-/***/ }),
-/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -331,17 +125,17 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(3);
+var _reactRedux = __webpack_require__(4);
 
-var _reactHelmet = __webpack_require__(4);
+var _reactHelmet = __webpack_require__(5);
 
-var _index = __webpack_require__(5);
+var _index = __webpack_require__(6);
 
-var _Filtercard = __webpack_require__(14);
+var _Filtercard = __webpack_require__(13);
 
 var _Filtercard2 = _interopRequireDefault(_Filtercard);
 
-var _LaunchCard = __webpack_require__(16);
+var _LaunchCard = __webpack_require__(15);
 
 var _LaunchCard2 = _interopRequireDefault(_LaunchCard);
 
@@ -517,13 +311,213 @@ exports.default = {
 };
 
 /***/ }),
-/* 13 */
+/* 4 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-redux");
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-helmet");
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.fetchLaunches = exports.FETCH_LAUNCHES = undefined;
+
+var _axios = __webpack_require__(12);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+var FETCH_LAUNCHES = exports.FETCH_LAUNCHES = "fetch_launches";
+
+var fetchLaunches = exports.fetchLaunches = function fetchLaunches(queryParams) {
+  return function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
+      var url, queryParamsMod, res;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              url = "https://api.spaceXdata.com/v3/launches?limit=100";
+              queryParamsMod = queryParams.replace("/", "").replace("?", "");
+
+
+              if (queryParamsMod && queryParamsMod.trim().length >= 0) {
+                url += "&" + queryParamsMod;
+              }
+
+              _context.next = 5;
+              return _axios2.default.get(url);
+
+            case 5:
+              res = _context.sent;
+
+
+              dispatch({
+                type: FETCH_LAUNCHES,
+                payload: res
+              });
+
+            case 7:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, undefined);
+    }));
+
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+};
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(14);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Button = function Button(_ref) {
+  var text = _ref.text,
+      active = _ref.active,
+      onClick = _ref.onClick;
+
+  var className = ["btn"];
+  active && className.push("btn--active");
+
+  return _react2.default.createElement(
+    "button",
+    { className: className.join(" "), onClick: onClick },
+    text
+  );
+};
+
+Button.propTypes = {
+  text: _propTypes2.default.string.isRequired,
+  active: _propTypes2.default.bool,
+  onClick: _propTypes2.default.func.isRequired
+};
+
+exports.default = Button;
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+module.exports = require("redux");
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(10);
+
+var _express = __webpack_require__(11);
+
+var _express2 = _interopRequireDefault(_express);
+
+var _reactRouterConfig = __webpack_require__(1);
+
+var _Routes = __webpack_require__(2);
+
+var _Routes2 = _interopRequireDefault(_Routes);
+
+var _renderer = __webpack_require__(17);
+
+var _renderer2 = _interopRequireDefault(_renderer);
+
+var _createStore = __webpack_require__(20);
+
+var _createStore2 = _interopRequireDefault(_createStore);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var app = (0, _express2.default)();
+
+app.use(_express2.default.static("public"));
+
+app.get("*", function (req, res) {
+  var store = (0, _createStore2.default)();
+  var promises = (0, _reactRouterConfig.matchRoutes)(_Routes2.default, req.path).map(function (_ref) {
+    var route = _ref.route;
+
+    return route.loadData ? route.loadData(store, req.originalUrl) : null;
+  }).map(function (promise) {
+    if (promise) {
+      return new Promise(function (resolve, reject) {
+        promise.then(resolve).catch(resolve);
+      });
+    }
+  });
+
+  Promise.all(promises).then(function () {
+    var context = {};
+    var content = (0, _renderer2.default)(req, store, context);
+
+    if (context.notFound) {
+      res.status(404);
+    }
+    res.send(content);
+  });
+});
+
+app.listen(process.env.PORT || 3000, function () {
+  console.log("listening to port 3000");
+});
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+module.exports = require("babel-polyfill");
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+module.exports = require("express");
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = require("axios");
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -541,7 +535,7 @@ var _Button = __webpack_require__(7);
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _HomePage = __webpack_require__(12);
+var _HomePage = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -600,13 +594,13 @@ var FilterCard = function FilterCard(_ref) {
 exports.default = FilterCard;
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = require("prop-types");
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -662,7 +656,6 @@ var LaunchCard = function LaunchCard(_ref) {
     });
 
     if (!core) return "No Data Available";
-
     if (core.land_success) return "Yes";else return "No";
   };
 
@@ -682,34 +675,38 @@ var LaunchCard = function LaunchCard(_ref) {
     ),
     _react2.default.createElement(
       "div",
-      null,
+      { className: "launchCard--section" },
       _react2.default.createElement(
-        "h6",
-        { className: "launchCard--missionId" },
-        "Mission Ids:"
-      ),
-      launch.mission_id && launch.mission_id.length > 0 ? _react2.default.createElement(
-        "ul",
+        "div",
         null,
-        launch.mission_id.map(function (ids) {
-          return _react2.default.createElement(
-            "li",
-            null,
-            ids
-          );
-        })
-      ) : _react2.default.createElement(NoData, null)
-    ),
-    renderRow("Launch Year", launch.launch_year),
-    renderRow("Successful Launch", launch.launch_success === true ? "Yes" : launch.launch_success === false ? "No" : "No Data Available"),
-    renderRow("Successful Landing", getLandSuccess())
+        _react2.default.createElement(
+          "h6",
+          { className: "launchCard--missionId" },
+          "Mission Ids:"
+        ),
+        launch.mission_id && launch.mission_id.length > 0 ? _react2.default.createElement(
+          "ul",
+          null,
+          launch.mission_id.map(function (ids) {
+            return _react2.default.createElement(
+              "li",
+              null,
+              ids
+            );
+          })
+        ) : _react2.default.createElement(NoData, null)
+      ),
+      renderRow("Launch Year", launch.launch_year),
+      renderRow("Successful Launch", launch.launch_success === true ? "Yes" : launch.launch_success === false ? "No" : "No Data Available"),
+      renderRow("Successful Landing", getLandSuccess())
+    )
   );
 };
 
 exports.default = LaunchCard;
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -740,7 +737,7 @@ var NotFoundPage = function NotFoundPage(_ref) {
 exports.default = { component: NotFoundPage };
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -754,15 +751,15 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _server = __webpack_require__(19);
+var _server = __webpack_require__(18);
 
-var _reactRouterDom = __webpack_require__(6);
+var _reactRouterDom = __webpack_require__(19);
 
-var _reactRedux = __webpack_require__(3);
+var _reactRedux = __webpack_require__(4);
 
 var _reactRouterConfig = __webpack_require__(1);
 
-var _reactHelmet = __webpack_require__(4);
+var _reactHelmet = __webpack_require__(5);
 
 var _Routes = __webpack_require__(2);
 
@@ -791,10 +788,16 @@ exports.default = function (req, store, context) {
 };
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom/server");
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-router-dom");
 
 /***/ }),
 /* 20 */
@@ -863,7 +866,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _index = __webpack_require__(5);
+var _index = __webpack_require__(6);
 
 exports.default = function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
