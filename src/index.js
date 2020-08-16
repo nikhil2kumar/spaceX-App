@@ -1,5 +1,6 @@
 import "babel-polyfill";
 import express from "express";
+import expressStaticGzip from "express-static-gzip";
 import { matchRoutes } from "react-router-config";
 import Routes from "./client/Routes";
 import createStore from "./helpers/createStore";
@@ -9,11 +10,27 @@ const app = express();
 
 app.use(express.static("public"));
 
-app.get("*.js", function (req, res, next) {
-  req.url = req.url + ".gz";
-  res.set("Content-Encoding", "gzip");
-  next();
-});
+app.use(
+  "/build/bundle",
+  expressStaticGzip("build/bundle", {
+    enableBrotli: true,
+    orderPreference: ["br", "gz"],
+    setHeaders: function (res, path) {
+      res.setHeader("Cache-Control", "public, max-age=31536000");
+    },
+  })
+);
+
+app.use(
+  "/build/bundle",
+  expressStaticGzip("build/bundle", {
+    enableBrotli: true,
+    orderPreference: ["br", "gz"],
+    setHeaders: function (res, path) {
+      res.setHeader("Cache-Control", "public, max-age=31536000");
+    },
+  })
+);
 
 app.get("*", (req, res) => {
   const store = createStore();
