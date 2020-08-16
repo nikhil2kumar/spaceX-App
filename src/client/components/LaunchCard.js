@@ -36,7 +36,7 @@ const LaunchCard = ({ launch }) => {
           {launch.mission_id && launch.mission_id.length > 0 ? (
             <ul>
               {launch.mission_id.map((ids) => (
-                <li>{ids}</li>
+                <li key={ids}>{ids}</li>
               ))}
             </ul>
           ) : (
