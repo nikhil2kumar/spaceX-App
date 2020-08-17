@@ -11,7 +11,7 @@ const app = express();
 app.use(express.static("public"));
 
 app.use(
-  "/build/bundle",
+  "*.js",
   expressStaticGzip("build/bundle", {
     enableBrotli: true,
     orderPreference: ["br", "gz"],
@@ -22,7 +22,7 @@ app.use(
 );
 
 app.use(
-  "/build/bundle",
+  "*.js",
   expressStaticGzip("build/bundle", {
     enableBrotli: true,
     orderPreference: ["br", "gz"],
