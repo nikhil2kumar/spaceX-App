@@ -2,14 +2,6 @@
 
 This application shows the list of the launch programs based on the filter applied. User has the option to apply filter on launch year, launch success and land success.
 
-## Installation
-
-Use the package manager [npm](https://www.npmjs.com/) to install the application.
-
-```bash
-npm install
-```
-
 ## Deployment
 
 Heroku is used for deployment.
