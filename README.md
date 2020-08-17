@@ -37,9 +37,11 @@ The deployment is connected to code GitHub repository's master branch. When the 
 
 5. React memo and useMemo hook is used to avoid unnecessary re-rendering.
 
-6. The code is split into multiple components to make use of re-usability.
+6. Images are lazily loaded to improve performance.
 
-7. No found page has been added in case the user tries to navigate to the page that doesn't exist.
+7. The code is split into multiple components to make use of re-usability.
+
+8. No found page has been added in case the user tries to navigate to the page that doesn't exist.
 
 ## Deployment Links
 
