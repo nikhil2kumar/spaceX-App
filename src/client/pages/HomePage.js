@@ -91,9 +91,6 @@ const HomePage = (props) => {
   return (
     <div>
       {head()}
-      {/* <div className="loader--outer">
-        <div className="loader"></div>
-      </div> */}
       <div className="outer--container">
         <h1>Space X Launch Program</h1>
         <div className="inner--container">
